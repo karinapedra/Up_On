@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#root{
+    background-color: #1a1a1a;
+    color: #f2f2f2;
+    height: 80vh;
+}
+header{
+    min-height: 10%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #1a1a1a;
+}
+header nav{
+    padding: 3vmin;
+}
+header img{
+    width: 20vmin;
+}
+img{
+    width: 15vmin;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+}
+.icons{
+    padding: 5vmin;
+    display: flex;
+    justify-content: space-around;
+    height: 10%;
+}
