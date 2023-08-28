@@ -1,5 +1,5 @@
-// Este es el punto de entrada de tu aplicacion
+import login from './pages/login/login.js'
+import register from './pages/register/register.js'
+import timeline from './pages/timeline/timeline.js'
 
-import { myFunction } from './lib/index.js';
 
-myFunction();
