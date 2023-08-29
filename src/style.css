@@ -20,6 +20,11 @@ html {
 .header img {
   width: 20vmin;
 }
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .footerMenu img {
   width: 13vmin;
 }
