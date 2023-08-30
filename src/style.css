@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 html {
   background-color: #1a1a1a;
@@ -13,6 +14,7 @@ html {
   display: flex;
   justify-content: center;
   width: 100%;
+  background-color: #1a1a1a;
 }
 .headerMenu {
   padding: 3vmin;
@@ -34,13 +36,13 @@ ul {
   padding: 0;
 }
 .footer {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
-  min-height: 10%;
+  background-color: #1a1a1a;
 }
 .footerMenu {
-  padding: 5vmin;
+  padding: 4.8vmin;
   display: flex;
   justify-content: space-around;
 }
