@@ -36,7 +36,14 @@
   font-size: 1.4rem;
   text-align: center;
   width: 100%;
+  opacity: 1;
+  transition: 0.3s;
 }
+
+button:hover {
+  background-color: #fd6132;
+}
+
 a {
   text-decoration: none;
   color: #1877F2
@@ -48,4 +55,76 @@ a {
 }
 .smallThings{
   display: block;
+}
+
+#fade, #modal {
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
+}
+
+#fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+
+#modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1a1a1a;
+  z-index: 10;
+  width: 25rem;
+  max-width: 90%;
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+.logo-img{
+  width: 15rem;
+  height: 15rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modalText {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.8rem;
+  
+}
+
+#close-modal {
+  width: 15rem;
+}
+
+#modal.hide,
+#fade.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+#modal.hide {
+  top: 0;
+}
+
+.footer {
+  display: none;
 }

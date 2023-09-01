@@ -16,7 +16,19 @@ export default () => {
     <p>_____________ or ____________</p>
     <button class="formButtons" id="google">Continue with Google</button>
     <p class="smallThings">New in Up_On? <a href="#" >SignUp</a></p>
-    <a href="#" class="smallThings">Learn About Up_On</a>
+    <a href="#" class="smallThings" id="open-modal">Learn About Up_On</a>
+    <div id="fade" class="hide"></div>
+    <div id="modal" class="hide">
+      <div class="modal-header">
+      <img src="/assets/up_on_logo.png" class="logo-img" alt="up_on_logo" />
+      </div>
+      <div class="modal-body">
+      <p class="modalText">A place where you can connect with what truly matters. Stay updated on your favorite interests, from technology to entertainment, all in real-time. Share news, discover relevant content, and become a part of a community passionate about knowledge. 
+      Join us to explore a world of information and meaningful connections.</p>
+      <button class="formButtons" id="close-modal">Back</button>
+      </div>
+
+
 `;
 
   container.innerHTML = template;
@@ -38,6 +50,19 @@ export default () => {
         const errorCode = error.code;
         const errorMessage = error.message;
       })
+    });
+    const openModalButton = container.querySelector("#open-modal");
+    const closeModalButton = container.querySelector("#close-modal");
+    const modal = container.querySelector("#modal");
+    const fade = container.querySelector("#fade");
+
+    const toggleModal = () => {
+      modal.classList.toggle("hide");
+      fade.classList.toggle("hide");
+    };
+    
+    [openModalButton, closeModalButton, fade].forEach((el) => {
+      el.addEventListener("click", () => toggleModal());
     });
   return container;
 };
