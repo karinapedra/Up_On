@@ -5,28 +5,39 @@ export default () => {
   const container = document.createElement("article");
   container.classList.add("formContent");
   const template = `
-    <section class="formTitle">
-        <h2>Sign in</h2>
-        <p> Stay up on the latest happenings from around the world, right here and now.</p>
+    <section class="about"> 
+      <figure><img src="./assets/up_on_logo.png" alt="Up_On" id="logo"></figure>
+      <p id="aboutUpOn">
+      A place where you can connect with what truly matters. Stay updated on your favorite interests, from technology to entertainment, all in real-time. Share news, discover relevant content, and become a part of a community passionate about knowledge. 
+      Join us to explore a world of information and meaningful connections.
+      </p>
     </section>
-    <input type="email" class="formInput" placeholder="E-mail" id="email"></input>
-    <input type="password" class="formInput" placeholder="Password" id="password"></input>
-    <a href="#" class="smallThings">Forgot your password?</a>
-    <button class="formButtons" id="signIn">Sign In</button>
-    <p>_____________ or ____________</p>
-    <button class="formButtons" id="google">Continue with Google</button>
-    <p class="smallThings">New in Up_On? <a href="#" >SignUp</a></p>
-    <a href="#" class="smallThings" id="open-modal">Learn About Up_On</a>
+    <section class="formLogin">
+      <section class="formTitle">
+          <h2>Sign in</h2>
+          <p class="initialAbout"> Stay up on the latest happenings from around the world, right here and now.</p>
+      </section>
+      <form class="formInputs">
+        <input type="email" class="formInput" placeholder="E-mail" id="email"></input>
+        <input type="password" class="formInput" placeholder="Password" id="password"></input>
+        <button class="formButtons" id="signIn">Sign In</button>
+      </form>
+      <hr>
+      <img src="./assets/google.png" alt="Google" id="google">
+      <p class="smallThings">New in Up_On? <a href="#" >SignUp</a></p>
+      <a href="#" class="smallThings" id="open-modal">Learn About Up_On</a>
+    </section>
     <div id="fade" class="hide"></div>
     <div id="modal" class="hide">
       <div class="modal-header">
-      <img src="/assets/up_on_logo.png" class="logo-img" alt="up_on_logo" />
+        <img src="/assets/up_on_logo.png" class="logo-img" alt="up_on_logo" />
       </div>
       <div class="modal-body">
-      <p class="modalText">A place where you can connect with what truly matters. Stay updated on your favorite interests, from technology to entertainment, all in real-time. Share news, discover relevant content, and become a part of a community passionate about knowledge. 
-      Join us to explore a world of information and meaningful connections.</p>
-      <button class="formButtons" id="close-modal">Back</button>
+        <p class="modalText">A place where you can connect with what truly matters. Stay updated on your favorite interests, from technology to entertainment, all in real-time. Share news, discover relevant content, and become a part of a community passionate about knowledge. 
+        Join us to explore a world of information and meaningful connections.</p>
+        <button class="formButtons" id="close-modal">Back</button>
       </div>
+
 
 
 `;

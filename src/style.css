@@ -6,6 +6,7 @@
 html {
   background-color: #1a1a1a;
   color: #f2f2f2;
+
 }
 .header {
   min-height: 10%;
@@ -26,6 +27,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 80vh;
 }
 .footerMenu img {
   width: 13vmin;

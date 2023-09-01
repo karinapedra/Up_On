@@ -1,12 +1,28 @@
+.about{
+  display: none;
+}
+
 .formContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3vmin;
   width: 90%;
+  min-height: 90%;
 }
+
+.formLogin{
+  display: flex;
+  flex-direction: column;
+  gap: 3vmin;
+  align-items: center;
+}
+
 .formTitle{
+  display: flex;
+  flex-direction: column;
   padding: 0 8px;
+  gap: 5vmin;
+  margin-bottom: 3vmin;
 }
 .formTitle h2 {
   font-size: 2rem;
@@ -14,6 +30,14 @@
 .formTitle p{
   font-size: 1rem;
 }
+
+.formInputs{
+  display: flex;
+  flex-direction: column;
+  gap: 3vmin;
+  width: 100%;
+}
+
 .formInput{
   background-color: #d9d9d9;
   padding: 1em 0;
@@ -48,10 +72,14 @@ a {
   text-decoration: none;
   color: #1877F2
 }
+
+hr{
+  width: 80%;
+  margin: 5px;  
+}
+
 #google{
-  background-color: #fff;
-  color: #000;
-  font-size: 1.2rem;
+  width: 20vmin;
 }
 .smallThings{
   display: block;
@@ -80,22 +108,17 @@ a {
   transform: translate(-50%, -50%);
   background-color: #1a1a1a;
   z-index: 10;
-  width: 25rem;
-  max-width: 90%;
-  padding: 2.5rem;
+  width: 90%;
   border-radius: 0.5rem;
 }
 
 .logo-img{
-  width: 15rem;
-  height: 15rem;
+  width: 50%;
 }
 
 .modal-header {
   display: flex;
-  justify-content: center;
-  padding: 2rem;
-  
+  justify-content: center;  
 }
 .modal-body {
   display: flex;
@@ -107,9 +130,8 @@ a {
 .modalText {
   padding: 2rem;
   margin-bottom: 2rem;
-  text-align: center;
+  text-align: justify;
   line-height: 1.8rem;
-  
 }
 
 #close-modal {
@@ -127,4 +149,69 @@ a {
 
 .footer {
   display: none;
+}
+
+@media (min-width: 1024px) {
+  .header{
+    display: none;
+  }
+  
+  .formContent{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-areas: "about formLogin";
+    min-height: 100vh;
+  }
+
+  #logo{
+    width: 48vmin;
+  }
+
+  .about{
+    display: flex;
+    flex-direction: column;
+    grid-area: about;
+    align-items: center;
+  }
+
+  .initialAbout{
+    display: none;
+  }
+
+  .formLogin{
+    grid-area: formLogin;
+    border: 1px;
+    box-shadow: 3px 3px 6px rgba(87, 86, 86, 0.7);
+    border-radius: 10px;
+    padding: 1em;
+    max-width: 85%;
+  }
+
+  .formInputs{
+    max-width: 85%;
+  }
+
+  hr{
+    width: 80%;
+    margin: 5px;
+    
+  }
+
+  #google{
+    width: 10vmin;
+  }
+
+  .formInput{
+    padding: 0.8em 0;
+  }
+
+  #aboutUpOn{
+    text-align: justify;
+    width: 80%;
+  }
+
+  #open-modal{
+    display: none;
+  }
+
 }
