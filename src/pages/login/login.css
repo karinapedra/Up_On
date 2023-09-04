@@ -1,7 +1,14 @@
 .about{
   display: none;
 }
-
+#errorMessage{
+  display: none;
+  background-color: #d11124;
+  padding: 8px 2px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 4px;
+}
 .formContent {
   display: flex;
   flex-direction: column;
