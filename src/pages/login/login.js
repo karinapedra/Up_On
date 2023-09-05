@@ -23,7 +23,10 @@ export default () => {
         <button class="formButtons" id="signIn">Sign In</button>
       </form>
       <hr>
-      <img src="./assets/google.png" alt="Google" id="google">
+      <button id="google" class="buttonGoogle">
+        <img class="imgGoogle" src="./assets/google.png" alt="Google">
+        <p>Continue With Google</p>
+      </button>
       <p class="smallThings">New in Up_On? <a href="#register">SignUp</a></p>
       <a href="#" class="smallThings" id="open-modal">Learn About Up_On</a>
     </section>
@@ -48,7 +51,9 @@ export default () => {
   const signInButton = container.querySelector("#signIn");
   const google = container.querySelector("#google");
   const errorMessage = container.querySelector("#errorMessage");
+  // const header = document.querySelector(".header");
 
+  // header.style.display = "none";
 
   signInButton.addEventListener("click", (event) => {
     event.preventDefault();
