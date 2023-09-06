@@ -3,30 +3,62 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
+  signOut, 
+  updateCurrentUser,
+  updateProfile
+
 } from "firebase/auth";
 import { app } from "../firebase/configFirebase.js";
 
 const provider = new GoogleAuthProvider();
 
 const auth = () => getAuth(app);
+//const user = auth().currentUser;
 
-export const createUserEmailAndPassword = async (email, password) => {
-  try {
-    await createUserWithEmailAndPassword(auth(), email, password)
-    console.log("ok");
-  } catch (error) {
-    throw error;
+export const checkIfUserIsLogged = () => {
+ onAuthStateChanged(auth(), (user) => {
+  if (user) {
+    console.log(user);
+    window.location.href = "#timeline";
+    const uid = user.uid;
+  
+  } else {
+    window.location.href = "#login";
   }
+})
+};
+
+export const createUserEmailAndPassword = async (email, password, nickname, icon) => {
+    return createUserWithEmailAndPassword(auth(), email, password)
+    .then(()=>{
+      updateProfile(auth().currentUser, {
+        displayName: nickname, photoURL: icon 
+      })
+    })
+    .catch((error)=> {
+    throw error;
+  })
 };
 
 export const loginEmailAndPassword = async (email, password) => {
-  try {
-    await signInWithEmailAndPassword(auth(), email, password);
-    console.log("User logged in");
-  } catch (error) {
-    throw error;
-  }
+  return setPersistence(auth(), browserLocalPersistence)
+    .then(() => {
+      return signInWithEmailAndPassword(auth(), email, password)
+        .then((userCredential) => {
+          const user = userCredential.user
+        })
+        .catch((error) => {
+          throw error;
+        })
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
 };
 
 export const loginGoogle = async () => {
@@ -49,3 +81,13 @@ export const loginGoogle = async () => {
       const credential = GoogleAuthProvider.credentialFromError(error);
     });
 };
+
+export const logOut = () => {
+signOut(auth())
+.then(()=> {
+  console.log("Deu certo");
+})
+.catch((error)=> {
+  console.log("erro" + error)
+});
+}

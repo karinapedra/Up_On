@@ -51,9 +51,9 @@ export default () => {
   const signInButton = container.querySelector("#signIn");
   const google = container.querySelector("#google");
   const errorMessage = container.querySelector("#errorMessage");
-  // const header = document.querySelector(".header");
+  const header = document.querySelector(".header");
 
-  // header.style.display = "none";
+  header.style.display = "none";
 
   signInButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -75,6 +75,8 @@ export default () => {
     loginGoogle()
       .then((result) => {
         window.location.href = "#timeline";
+        const user = result.user;
+        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -101,3 +103,4 @@ export default () => {
   });
   return container;
 };
+
