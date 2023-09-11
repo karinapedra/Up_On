@@ -1,4 +1,8 @@
-import { loginEmailAndPassword, loginGoogle } from "../../firebase/firebase.js";
+import {
+  loginEmailAndPassword,
+  loginGoogle,
+  recoverPassword,
+} from "../../firebase/firebase.js";
 
 export default () => {
   const container = document.createElement("article");
@@ -20,6 +24,7 @@ export default () => {
         <p id="errorMessage"></p>
         <input type="email" class="formInput" placeholder="E-mail" id="email" required></input>
         <input type="password" class="formInput" placeholder="Password" id="password" required></input>
+        <a href="#forgot" id="recoverPasswordButton">Forgot your password?</a>
         <button class="formButtons" id="signIn">Sign In</button>
       </form>
       <hr>
@@ -52,8 +57,17 @@ export default () => {
   const google = container.querySelector("#google");
   const errorMessage = container.querySelector("#errorMessage");
   const header = document.querySelector(".header");
+  const recoverPasswordButton = container.querySelector(
+    "#recoverPasswordButton"
+  );
 
   header.style.display = "none";
+
+  recoverPasswordButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    const email = emailLogin.value;
+    recoverPassword(email);
+  });
 
   signInButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -63,7 +77,7 @@ export default () => {
         const user = userCredential.user;
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         let errorCode = error.code;
         errorCode = errorCode.substr(5).split("-").join(" ");
         errorMessage.innerText =
@@ -84,10 +98,10 @@ export default () => {
   });
   emailLogin.addEventListener("input", () => {
     errorMessage.style.display = "none";
-  })
+  });
   passwordLogin.addEventListener("input", () => {
     errorMessage.style.display = "none";
-  })
+  });
   const openModalButton = container.querySelector("#open-modal");
   const closeModalButton = container.querySelector("#close-modal");
   const modal = container.querySelector("#modal");
@@ -103,4 +117,3 @@ export default () => {
   });
   return container;
 };
-

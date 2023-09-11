@@ -7,41 +7,58 @@ import {
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
-  signOut, 
+  signOut,
   updateCurrentUser,
-  updateProfile
-
+  updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { app } from "../firebase/configFirebase.js";
 
 const provider = new GoogleAuthProvider();
 
 const auth = () => getAuth(app);
-//const user = auth().currentUser;
 
 export const checkIfUserIsLogged = () => {
- onAuthStateChanged(auth(), (user) => {
-  if (user) {
-    console.log(user);
-    window.location.href = "#timeline";
-    const uid = user.uid;
-  
-  } else {
-    window.location.href = "#login";
-  }
-})
+  onAuthStateChanged(auth(), (user) => {
+    if (user) {
+      //console.log(user);
+      window.location.href = "#timeline";
+      return user.displayName;
+    } else {
+      window.location.href = "#login";
+    }
+  });
+};
+export const getUserInfo = () => {
+  return auth().currentUser;
+};
+export const createUserEmailAndPassword = async (
+  email,
+  password,
+  nickname,
+  icon
+) => {
+  return createUserWithEmailAndPassword(auth(), email, password)
+    .then(() => {
+      updateProfile(auth().currentUser, {
+        displayName: nickname,
+        photoURL: icon,
+      });
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
 
-export const createUserEmailAndPassword = async (email, password, nickname, icon) => {
-    return createUserWithEmailAndPassword(auth(), email, password)
-    .then(()=>{
-      updateProfile(auth().currentUser, {
-        displayName: nickname, photoURL: icon 
-      })
+export const recoverPassword = (email) => {
+  sendPasswordResetEmail(auth(), email)
+    .then(() => {
+      alert("E-mail de redefinição enviado com sucesso!");
     })
-    .catch((error)=> {
-    throw error;
-  })
+    .catch((error) => {
+      console.error(error);
+      alert("Ocorreu um erro ao enviar o email de redefinição de senha.");
+    });
 };
 
 export const loginEmailAndPassword = async (email, password) => {
@@ -49,11 +66,11 @@ export const loginEmailAndPassword = async (email, password) => {
     .then(() => {
       return signInWithEmailAndPassword(auth(), email, password)
         .then((userCredential) => {
-          const user = userCredential.user
+          const user = userCredential.user;
         })
         .catch((error) => {
           throw error;
-        })
+        });
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -83,11 +100,11 @@ export const loginGoogle = async () => {
 };
 
 export const logOut = () => {
-signOut(auth())
-.then(()=> {
-  console.log("Deu certo");
-})
-.catch((error)=> {
-  console.log("erro" + error)
-});
-}
+  signOut(auth())
+    .then(() => {
+      console.log("Deu certo");
+    })
+    .catch((error) => {
+      console.log("erro" + error);
+    });
+};

@@ -1,4 +1,7 @@
-import { createUserEmailAndPassword, loginGoogle } from "../../firebase/firebase.js";
+import {
+  createUserEmailAndPassword,
+  loginGoogle,
+} from "../../firebase/firebase.js";
 
 export default () => {
   const container = document.createElement("article");
@@ -33,7 +36,7 @@ export default () => {
       <img class="imgGoogle" src="./assets/google.png" alt="Google">
       <p>Continue With Google</p>
       </button>
-    `
+    `;
 
   container.innerHTML = template;
   const emailCreate = container.querySelector("#email");
@@ -46,36 +49,42 @@ export default () => {
   const nickname = container.querySelector("#nickname");
   // const form = container.querySelector("#formRegister");
   // const icons = form.elements["image"]
-  const icons = container.querySelectorAll('input[type="radio"]');
-  
+  const icons = container.querySelectorAll(
+    "input[type='radio'][name='imagem']"
+  );
   header.style.display = "flex";
-
-
-  const valueSelected = (() =>{
-    icons.forEach((icon)=>{
-      icon.addEventListener("change",()=>{
-        const iconSelected = container.querySelector("input[type='radio'] [name='image']:checked");
-        if(iconSelected){
-          const valueSelected = iconSelected.value;
-          console.log("opção selecionada:" + valueSelected);
-          return valueSelected
+  let selectedIcon = "";
+  icons.forEach((icon) => {
+    icon.addEventListener(
+      "change",
+      (selectedIcon = () => {
+        const iconSelected = container.querySelector(
+          "input[type='radio'][name='imagem']:checked"
+        );
+        if (iconSelected) {
+          return iconSelected.value;
         }
       })
-    })
-  })
+    );
+  });
 
   signUpButton.addEventListener("click", (event) => {
     event.preventDefault();
     if (passwordCreate.value === confirmPasswordCreate.value) {
       console.log("ok");
-      createUserEmailAndPassword(emailCreate.value, passwordCreate.value, nickname.value, valueSelected())
+      createUserEmailAndPassword(
+        emailCreate.value,
+        passwordCreate.value,
+        nickname.value,
+        selectedIcon()
+      )
         .then((userCredential) => {
           window.location.href = "#timeline";
           const user = userCredential.user;
           console.log(user);
         })
         .catch((error) => {
-          console.log(error)
+          console.log(error);
           let errorCode = error.code;
           errorCode = errorCode.substr(5).split("-").join(" ");
           errorMessage.innerText =
@@ -98,10 +107,10 @@ export default () => {
   });
   emailCreate.addEventListener("input", () => {
     errorMessage.style.display = "none";
-  })
+  });
   passwordCreate.addEventListener("input", () => {
     errorMessage.style.display = "none";
-  })
+  });
 
   return container;
-}
+};

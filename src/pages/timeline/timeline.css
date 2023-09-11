@@ -1,0 +1,40 @@
+.posts{
+  background-color: #6a6a6a;
+  padding: 1.2rem;
+  border-radius: 5px;
+}
+.postHeader{
+  display: flex;
+  gap:1rem;
+  white-space: nowrap;
+}
+.postFooter{
+  display: flex;
+}
+.votes{
+  display: flex;
+  gap: 2vmin;
+}
+#userImage {
+  width: 2rem;
+}
+.createButton{
+  position: absolute;
+  right: 25px;
+  bottom:2rem;
+  z-index: 10;
+  background-color: #F5754E;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.createButton img{
+  width: 10vmin;
+}
+.postButtons img{
+  width: 6vmin;
+}
+button{
+  all:initial;
+}
