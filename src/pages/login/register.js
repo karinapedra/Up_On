@@ -17,14 +17,14 @@ export default () => {
         <section class="chooseIcon"> 
           <p>Choose your Icon</p>
           <figure class="iconUser">
-            <input type="radio" name="imagem" value="https://drive.google.com/uc?id=1V-xExEGhwfNOajQiLyWHfvmrkI5-h8nD" id="i1" />
-              <label for="i1"><img class="iconImg" src="https://drive.google.com/uc?id=1V-xExEGhwfNOajQiLyWHfvmrkI5-h8nD" alt=""></label>
-            <input type="radio" name="imagem" value="https://drive.google.com/uc?id=1IaVq5iSVO5EAm2Zr8KqEWQqKuRfzPTVS" id="i2" />
-              <label for="i2"><img class="iconImg" src="https://drive.google.com/uc?id=1IaVq5iSVO5EAm2Zr8KqEWQqKuRfzPTVS" alt=""></label>
-            <input type="radio" name="imagem" value="https://drive.google.com/uc?id=12s1zfZz18VpKonacjdgdxIHhrkKzQsZS" id="i3" />
-              <label for="i3"><img class="iconImg" src="https://drive.google.com/uc?id=12s1zfZz18VpKonacjdgdxIHhrkKzQsZS" alt=""></label>
-            <input type="radio" name="imagem" value="https://drive.google.com/uc?id=1l3de36UjlXbzICb1vwwtUVvif9JcKZs2" id="i4" />
-              <label for="i4"><img class="iconImg" src="https://drive.google.com/uc?id=1l3de36UjlXbzICb1vwwtUVvif9JcKZs2" alt=""></label>
+            <input type="radio" name="imagem" value="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561841-emoji-expression-glared-shocked-surprised_107880.png" id="i1" />
+              <label for="i1"><img class="iconImg" src="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561841-emoji-expression-glared-shocked-surprised_107880.png" alt=""></label>
+            <input type="radio" name="imagem" value="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561842-emoji-emoticon-expression-shame-smiley_107887.png" id="i2" />
+              <label for="i2"><img class="iconImg" src="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561842-emoji-emoticon-expression-shame-smiley_107887.png" alt=""></label>
+            <input type="radio" name="imagem" value="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561857-bedroom-emoji-emoticon-rest-sleep-sleeping_107895.png" id="i3" />
+              <label for="i3"><img class="iconImg" src="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561857-bedroom-emoji-emoticon-rest-sleep-sleeping_107895.png" alt=""></label>
+            <input type="radio" name="imagem" value="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561839-emoji-emoticon-silly_107878.png" id="i4" />
+              <label for="i4"><img class="iconImg" src="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561839-emoji-emoticon-silly_107878.png" alt=""></label>
           </figure>
         </section>
         <p class="smallContent">Enter at least 8 characters</p>
@@ -47,8 +47,6 @@ export default () => {
   const errorMessage = container.querySelector("#errorMessage");
   const header = document.querySelector(".header");
   const nickname = container.querySelector("#nickname");
-  // const form = container.querySelector("#formRegister");
-  // const icons = form.elements["image"]
   const icons = container.querySelectorAll(
     "input[type='radio'][name='imagem']"
   );

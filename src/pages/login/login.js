@@ -35,6 +35,7 @@ export default () => {
       <p class="smallThings">New in Up_On? <a href="#register">SignUp</a></p>
       <a href="#" class="smallThings" id="open-modal">Learn About Up_On</a>
     </section>
+    
     <div id="fade" class="hide"></div>
     <div id="modal" class="hide">
       <div class="modal-header">

@@ -12,7 +12,8 @@ import {
   updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { app } from "../firebase/configFirebase.js";
+import { collection, query, onSnapshot, getDocs } from "firebase/firestore";
+import { app, db } from "../firebase/configFirebase.js";
 
 const provider = new GoogleAuthProvider();
 
@@ -108,3 +109,13 @@ export const logOut = () => {
       console.log("erro" + error);
     });
 };
+
+export const getPosts = async () =>{
+  const posts = [];
+  const consultPost = query(collection(db, "Posts"));
+  const snapshot = await getDocs(consultPost); 
+  snapshot.forEach((document) =>{
+    posts.push({ ...document.data()});
+  });
+  return posts;
+}

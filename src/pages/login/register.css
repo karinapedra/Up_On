@@ -54,7 +54,8 @@ input[type="radio"] {
 .iconUser {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  padding-right: 5vmin;
 }
 
 label {
@@ -70,7 +71,18 @@ input[type="radio"]:checked+label {
 
 .iconImg {
   width: 4rem;
+  padding: 0.8vmin;
+  border-radius: 100px;
 }
+
+.iconImg:hover {
+  background-color: #F5754E;
+}
+
+/* .iconImg:active {
+  background-color: #F5754E;
+} */
+
 
 @media (min-width: 1024px) {
   .headerMenu {
