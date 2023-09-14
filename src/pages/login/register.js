@@ -27,7 +27,7 @@ export default () => {
               <label for="i4"><img class="iconImg" src="https://cdn.icon-icons.com/icons2/1576/PNG/512/3561839-emoji-emoticon-silly_107878.png" alt=""></label>
           </figure>
         </section>
-        <p class="smallContent">Enter at least 8 characters</p>
+        <p class="smallContent">Enter at least 6 characters</p>
         <input id="password" type="password" class="formInput" placeholder="Password"/>
         <input id="confirmPassword" type="password" class="formInput" placeholder="Confirm your password"/>
         <button id="signUp" class="formButtons">Sign Up</button>
@@ -90,6 +90,7 @@ export default () => {
           errorMessage.style.display = "block";
         });
     } else {
+      errorMessage.style.display = "block";
       errorMessage.innerText = "Password doesn't match";
     }
   });

@@ -10,6 +10,9 @@
 .formTitle {
   width: 100%;
 }
+h2.formTitle {
+  padding-top: 10vmin;
+}
 
 .smallContent {
   font-size: 0.8rem;
@@ -104,11 +107,12 @@ input[type="radio"]:checked+label {
 
   h2.formTitle {
     font-size: 1.6rem;
+    padding-top: 5vmin;
   }
 
-  p.formTitle {
+  /* p.formTitle {
     font-size: 0.8rem;
-  }
+  } */
 
   .smallContent {
     font-size: 0.6rem;

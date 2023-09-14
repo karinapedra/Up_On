@@ -10,7 +10,9 @@ hr{
   width: 100%;
   color: #3a3a3a;
 }
-
+.allPosts{
+  width: 90%;
+}
 .posts{
   display: flex;
   flex-direction: column;
@@ -45,11 +47,11 @@ hr{
 }
 
 .userImage {
-  width: 3.5rem;
+  width: 3rem;
   border-radius: 100px;
 }
 .createButton{
-  position: absolute;
+  position: fixed;
   right: 25px;
   bottom:2rem;
   z-index: 10;
@@ -61,6 +63,14 @@ hr{
 }
 .createButton img{
   width: 10vmin;
+}
+
+.upVoteButton img{
+  width: 6vmin;
+  cursor: pointer;
+}
+button.upVoteButton{
+  all:initial;
 }
 
 .postButtons img{
