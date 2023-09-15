@@ -8,31 +8,26 @@ import {
   browserLocalPersistence,
   onAuthStateChanged,
   signOut,
-  updateCurrentUser,
   updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { collection, query, onSnapshot, getDocs, addDoc, serverTimestamp, orderBy, updateDoc, arrayUnion, doc, arrayRemove } from "firebase/firestore";
+import {
+  collection,
+  query,
+  onSnapshot,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+  orderBy,
+  updateDoc,
+  arrayUnion,
+  doc,
+  arrayRemove,
+} from "firebase/firestore";
 import { app, db } from "../firebase/configFirebase.js";
-import { async } from "regenerator-runtime";
-
-const provider = new GoogleAuthProvider();
 
 const auth = () => getAuth(app);
 
-export const checkIfUserIsLogged = () => {
-  onAuthStateChanged(auth(), (user) => {
-    if (user) {
-      window.location.href = "#timeline";
-      return user.displayName;
-    } else {
-      window.location.href = "#login";
-    }
-  });
-};
-export const getUserInfo = () => {
-  return auth().currentUser;
-};
 export const createUserEmailAndPassword = async (
   email,
   password,
@@ -48,16 +43,6 @@ export const createUserEmailAndPassword = async (
     })
     .catch((error) => {
       throw error;
-    });
-};
-
-export const recoverPassword = (email) => {
-  sendPasswordResetEmail(auth(), email)
-    .then(() => {
-      alert("E-mail de redefinição enviado com sucesso!");
-    })
-    .catch((error) => {
-      alert("Ocorreu um erro ao enviar o email de redefinição de senha.");
     });
 };
 
@@ -78,7 +63,18 @@ export const loginEmailAndPassword = async (email, password) => {
     });
 };
 
+export const recoverPassword = (email) => {
+  sendPasswordResetEmail(auth(), email)
+    .then(() => {
+      alert("E-mail de redefinição enviado com sucesso!");
+    })
+    .catch((error) => {
+      alert("Ocorreu um erro ao enviar o email de redefinição de senha.");
+    });
+};
+
 export const loginGoogle = async () => {
+  const provider = new GoogleAuthProvider();
   return signInWithPopup(auth(), provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -97,61 +93,64 @@ export const loginGoogle = async () => {
     });
 };
 
-export const logOut = () => {
-  signOut(auth())
-    .then(() => {
-    })
-    .catch((error) => {
-    });
+export const checkIfUserIsLogged = () => {
+  onAuthStateChanged(auth(), (user) => {
+    if (user) {
+      window.location.href = "#timeline";
+      return user.displayName;
+    } else {
+      window.location.href = "#login";
+    }
+  });
 };
 
-export const getPosts = async () =>{
-  const posts = []; 
+export const getUserInfo = () => {
+  return auth().currentUser;
+};
+
+export const logOut = () => {
+  signOut(auth());
+};
+
+export const getPosts = (createAllPosts) => {
   const ref = collection(db, "Posts");
-  const consultPost = query(ref, orderBy("data","desc"));
-  onSnapshot(consultPost, (querySnapshot)=>{
-    posts.length = 0;
-    querySnapshot.forEach((post)=>{
+  const consultPost = query(ref, orderBy("data", "desc"));
+  onSnapshot(consultPost, (querySnapshot) => {
+    querySnapshot.docs.forEach((post) => {
       const data = post.data();
       data.docRef = post.id;
-      posts.push({...post.data()});
-    }) 
-  })
-  // const snapshot = await getDocs(consultPost); 
-  // snapshot.forEach((document) =>{
-  //   posts.push({ ...document.data(), docRef: document.id});
-  // });
-  return posts;
-}
-
+      console.log(data.docRef)
+      createAllPosts(data);
+    });
+  });
+};
 export const voted = async (docID, userUID) => {
   await updateDoc(doc(db, "Posts", docID), {
-  votes: arrayUnion(userUID)
-});
-}
+    votes: arrayUnion(userUID),
+  });
+};
 export const unvoted = async (docID, userUID) => {
   await updateDoc(doc(db, "Posts", docID), {
-  votes: arrayRemove(userUID)
-});
-}
+    votes: arrayRemove(userUID),
+  });
+};
 export const addPosts = async (content, nickname, photoURL, userUID) => {
-const docRef = await addDoc(collection(db, "Posts"), {
-  content: content, 
-  nickname: nickname,
-  data: serverTimestamp(), 
-  photoURL: photoURL,
-  userUID: userUID,
-  votes: [],
-});
-}
+  const docRef = await addDoc(collection(db, "Posts"), {
+    content: content,
+    nickname: nickname,
+    data: serverTimestamp(),
+    photoURL: photoURL,
+    userUID: userUID,
+    votes: [],
+  });
+};
 
-export const checkedPosts = async (postID)=>{
-  const postRef = doc(db, "Posts", postID);
-  const postSnapshot = await getDoc(postRef);
-  const post = postSnapshot.data();
-  return post;
-}
-
+// export const checkedPosts = async (postID) => {
+//   const postRef = doc(db, "Posts", postID);
+//   const postSnapshot = await getDoc(postRef);
+//   const post = postSnapshot.data();
+//   return post;
+// };
 
 export const calculateTimeAgo = (date) => {
   const currentDate = new Date();
@@ -161,11 +160,13 @@ export const calculateTimeAgo = (date) => {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
   if (days > 0) {
-    return `${days} days${days === 1 ? '' : ''}`;
-  } if (hours > 0) {
-    return `${hours}h${hours === 1 ? '' : ''}`;
-  } if (minutes > 0) {
-    return `${minutes} min${minutes === 1 ? '' : ''}`;
+    return `${days} days${days === 1 ? "" : ""}`;
   }
-  return `${seconds}s${seconds === 1 ? '' : ''}`;
+  if (hours > 0) {
+    return `${hours}h${hours === 1 ? "" : ""}`;
+  }
+  if (minutes > 0) {
+    return `${minutes} min${minutes === 1 ? "" : ""}`;
+  }
+  return `${seconds}s${seconds === 1 ? "" : ""}`;
 };

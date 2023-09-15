@@ -81,13 +81,13 @@ button.postButtons{
   all:initial;
 }
 
-#fade, #modal {
+#fade-createPost, #modal-createPost {
   transition: 0.5s;
   opacity: 1;
   pointer-events: all;
 }
 
-#fade {
+#fade-createPost {
   position: fixed;
   top: 0;
   left: 0;
@@ -97,7 +97,7 @@ button.postButtons{
   z-index: 5;
 }
 
-#modal {
+#modal-createPost {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -131,13 +131,13 @@ button.postButtons{
   gap: 2vmin;
 }
 
-#modal.hide,
-#fade.hide {
+#modal-createPost.hide,
+#fade-createPost.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal.hide {
+#modal-createPost.hide {
   top: 0;
 }
 
@@ -175,7 +175,7 @@ button.postButtons{
   font-weight: 600;
 }
 
-#close-modal{
+#close-modal-createPost{
   background-color: #f2f2f2;
   color: #F5754E;
   width: 30%;
@@ -203,7 +203,7 @@ button.postButtons{
     display: none;
   }
 
-  #open-modal{
+  #open-modal-createPost{
     display: flex;
     justify-content: center;
     align-items: center;
