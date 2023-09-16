@@ -1,9 +1,36 @@
+.header-timeline {
+  min-height: 10%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #1a1a1a;
+  box-shadow: 0 8px 6px -6px rgba(255, 255, 255, 0.2);
+  width: 96vw;
+}
+.headerMenu-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vmin 0;
+  width: 90vw;
+}
+.header-timeline img {
+  width: 10vmin;
+}
+#userImageHeader{
+  width: 12vmin;
+  border-radius: 100px;
+}
+#logo img {
+  width: 20vmin;
+}
+
 .timelineContent{
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 90%;
-  /* width: 90%; */
 }
 
 hr{
@@ -11,6 +38,9 @@ hr{
   color: #3a3a3a;
 }
 .allPosts{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 90%;
 }
 .posts{
@@ -62,6 +92,7 @@ hr{
   justify-content: center;
 }
 .createButton img{
+  cursor: pointer;
   width: 10vmin;
 }
 
@@ -117,7 +148,7 @@ button.postButtons{
   padding-left: 3.5vmin;
 }
 
-#userImagePost{
+#userImage{
   width: 3.5rem;
   border-radius: 100px; 
   padding: 1.5vmin;
@@ -149,6 +180,9 @@ button.postButtons{
   padding-top: 1vmin;
   padding-left: 1.5vmin;
 }
+textarea{
+  font-size: 1rem;
+}
 
 .buttonsCreate{
   display: flex;
@@ -171,7 +205,7 @@ button.postButtons{
   height: 6vmin;
 }
 
-#userCreatPost{
+#userName{
   font-weight: 600;
 }
 
@@ -187,6 +221,17 @@ button.postButtons{
   width: 30%;
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(250, 250, 250, 0.2);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
 
 @media (min-width: 1024px) {
   .posts{
@@ -209,4 +254,16 @@ button.postButtons{
     align-items: center;
   }
 
+  .posts{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .posts:nth-child(1){
+    border-top: unset;
+  }
+  #modal-createPost {
+    width: 65%;
+  }
+  textarea{
+    font-size: 1.2rem;
+  }
 }

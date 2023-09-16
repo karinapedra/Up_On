@@ -15,7 +15,6 @@ import {
   collection,
   query,
   onSnapshot,
-  getDocs,
   addDoc,
   serverTimestamp,
   orderBy,
@@ -25,6 +24,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { app, db } from "../firebase/configFirebase.js";
+import { async } from "regenerator-runtime";
 
 const auth = () => getAuth(app);
 
@@ -77,13 +77,7 @@ export const loginGoogle = async () => {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth(), provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -97,7 +91,6 @@ export const checkIfUserIsLogged = () => {
   onAuthStateChanged(auth(), (user) => {
     if (user) {
       window.location.href = "#timeline";
-      return user.displayName;
     } else {
       window.location.href = "#login";
     }
@@ -112,30 +105,8 @@ export const logOut = () => {
   signOut(auth());
 };
 
-export const getPosts = (createAllPosts) => {
-  const ref = collection(db, "Posts");
-  const consultPost = query(ref, orderBy("data", "desc"));
-  onSnapshot(consultPost, (querySnapshot) => {
-    querySnapshot.docs.forEach((post) => {
-      const data = post.data();
-      data.docRef = post.id;
-      console.log(data.docRef)
-      createAllPosts(data);
-    });
-  });
-};
-export const voted = async (docID, userUID) => {
-  await updateDoc(doc(db, "Posts", docID), {
-    votes: arrayUnion(userUID),
-  });
-};
-export const unvoted = async (docID, userUID) => {
-  await updateDoc(doc(db, "Posts", docID), {
-    votes: arrayRemove(userUID),
-  });
-};
-export const addPosts = async (content, nickname, photoURL, userUID) => {
-  const docRef = await addDoc(collection(db, "Posts"), {
+export const addPost = async (content, nickname, photoURL, userUID) => {
+  await addDoc(collection(db, "Posts"), {
     content: content,
     nickname: nickname,
     data: serverTimestamp(),
@@ -145,12 +116,34 @@ export const addPosts = async (content, nickname, photoURL, userUID) => {
   });
 };
 
-// export const checkedPosts = async (postID) => {
-//   const postRef = doc(db, "Posts", postID);
-//   const postSnapshot = await getDoc(postRef);
-//   const post = postSnapshot.data();
-//   return post;
-// };
+export const getPosts = (createAllPosts) => {
+  const ref = collection(db, "Posts");
+  const consultPost = query(ref, orderBy("data", "desc"));
+  onSnapshot(consultPost, (querySnapshot) => {
+    querySnapshot.docs.forEach((post) => {
+      const data = post.data();
+      data.docRef = post.id;
+      createAllPosts(data);
+    });
+  });
+};
+
+export const votePost = (docID, userUID) => {
+  const q = doc(db, "Posts", docID);
+  onSnapshot(q, async (querySnapshot) => {
+    const data = querySnapshot.data();
+    const votes = data.votes;
+    if (votes.includes(userUID)) {
+      await updateDoc(doc(db, "Posts", docID), {
+        votes: arrayRemove(userUID),
+      });
+    } else {
+      await updateDoc(doc(db, "Posts", docID), {
+        votes: arrayUnion(userUID),
+      });
+    }
+  });
+};
 
 export const calculateTimeAgo = (date) => {
   const currentDate = new Date();

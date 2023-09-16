@@ -2,11 +2,8 @@ import login from "./pages/login/login.js";
 import register from "./pages/login/register.js";
 import timeline from "./pages/timeline/timeline.js";
 import {checkIfUserIsLogged} from "./firebase/firebase.js";
-// import { getAuth } from "firebase/auth";
-// import { app } from "../firebase/configFirebase.js";
 
 const main = document.querySelector("#root");
-// const auth = () => getAuth(app); //auth não reconhecido 
 
 const init = () => {
   window.addEventListener("hashchange", () => {

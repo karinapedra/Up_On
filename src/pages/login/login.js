@@ -8,6 +8,16 @@ export default () => {
   const container = document.createElement("article");
   container.classList.add("formContent");
   const template = `
+  <header class="header">
+      <nav>
+        <ul class="headerMenu">
+            <a href="#login" id="logo">
+              <img src="assets/up_on_logo.png" alt="up_on_logo" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
     <section class="about"> 
       <figure><img src="./assets/up_on_logo.png" alt="Up_On" id="logo"></figure>
       <p id="aboutUpOn">
@@ -33,20 +43,20 @@ export default () => {
         <p>Continue With Google</p>
       </button>
       <p class="smallThings">New in Up_On? <a href="#register">SignUp</a></p>
-      <a href="#" class="smallThings" id="open-modal">Learn About Up_On</a>
+      <a href="#" class="smallThings" id="open-modal-about">Learn About Up_On</a>
     </section>
     
-    <div id="fade" class="hide"></div>
-    <div id="modal" class="hide">
-      <div class="modal-header">
+    <div id="fade-about" class="hide"></div>
+    <div id="modal-about" class="hide">
+      <div class="modal-header-about">
         <img src="/assets/up_on_logo.png" class="logo-img" alt="up_on_logo" />
       </div>
-      <div class="modal-body">
+      <div class="modal-body-about">
         <p class="modalText">
           A place where you can connect with what truly matters. Stay updated on your favorite interests, from technology to entertainment, all in real-time. Share news, discover relevant content, and become a part of a community passionate about knowledge. 
           Join us to explore a world of information and meaningful connections.
         </p>
-        <button class="formButtons" id="close-modal">Back</button>
+        <button class="formButtons" id="close-modal-about">Back</button>
       </div>
     </div>
 `;
@@ -57,12 +67,7 @@ export default () => {
   const signInButton = container.querySelector("#signIn");
   const google = container.querySelector("#google");
   const errorMessage = container.querySelector("#errorMessage");
-  const header = document.querySelector(".header");
-  const recoverPasswordButton = container.querySelector(
-    "#recoverPasswordButton"
-  );
-
-  header.style.display = "none";
+  const recoverPasswordButton = container.querySelector("#recoverPasswordButton");
 
   recoverPasswordButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -103,17 +108,17 @@ export default () => {
   passwordLogin.addEventListener("input", () => {
     errorMessage.style.display = "none";
   });
-  const openModalButton = container.querySelector("#open-modal");
-  const closeModalButton = container.querySelector("#close-modal");
-  const modal = container.querySelector("#modal");
-  const fade = container.querySelector("#fade");
+  const openModalAboutButton = container.querySelector("#open-modal-about");
+  const closeModalAboutButton = container.querySelector("#close-modal-about");
+  const modalAbout = container.querySelector("#modal-about");
+  const fadeAbout = container.querySelector("#fade-about");
 
   const toggleModal = () => {
-    modal.classList.toggle("hide");
-    fade.classList.toggle("hide");
+    modalAbout.classList.toggle("hide");
+    fadeAbout.classList.toggle("hide");
   };
 
-  [openModalButton, closeModalButton, fade].forEach((el) => {
+  [openModalAboutButton, closeModalAboutButton, fadeAbout].forEach((el) => {
     el.addEventListener("click", () => toggleModal());
   });
   return container;
