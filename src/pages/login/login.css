@@ -197,10 +197,6 @@ hr{
   top: 0;
 }
 
-.footer {
-  display: none;
-}
-
 @media (min-width: 1024px) {
   .header{
     display: none;
@@ -213,8 +209,7 @@ hr{
   .formContent{
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    grid-template-areas: 
-    "about formLogin";
+    grid-template-areas: "about formLogin";
     min-height: 100vh;
   }
 

@@ -10,20 +10,52 @@
 }
 .headerMenu-timeline {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2vmin 0;
+  padding: 2vmin 2vmin;
   width: 90vw;
 }
 .header-timeline img {
   width: 10vmin;
 }
+
+li {
+  display: flex;
+  align-items: center;
+}
+
 #userImageHeader{
   width: 12vmin;
   border-radius: 100px;
 }
 #logo img {
+  display: flex;
+  justify-content: center;
   width: 20vmin;
+}
+
+#signOut{
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2vmin;
+  font-weight: 600;
+  text-align: center;
+  height: 4vmin;
+  background-color: #F5754E;
+  color: #f2f2f2;
+  width: 60%;
+}
+
+.signOut{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.signOutIcon{
+  color: #f2f2f2;
 }
 
 .timelineContent{
@@ -112,13 +144,13 @@ button.postButtons{
   all:initial;
 }
 
-#fade-createPost, #modal-createPost {
+.fade-createPost, .modal-createPost {
   transition: 0.5s;
   opacity: 1;
   pointer-events: all;
 }
 
-#fade-createPost {
+.fade-createPost {
   position: fixed;
   top: 0;
   left: 0;
@@ -128,7 +160,7 @@ button.postButtons{
   z-index: 5;
 }
 
-#modal-createPost {
+.modal-createPost {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -148,7 +180,7 @@ button.postButtons{
   padding-left: 3.5vmin;
 }
 
-#userImage{
+.userImage{
   width: 3.5rem;
   border-radius: 100px; 
   padding: 1.5vmin;
@@ -162,17 +194,17 @@ button.postButtons{
   gap: 2vmin;
 }
 
-#modal-createPost.hide,
-#fade-createPost.hide {
+.modal-createPost.hide,
+.fade-createPost.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal-createPost.hide {
+.modal-createPost.hide {
   top: 0;
 }
 
-#createPost{
+.createPost{
   resize: none;
   width: 90%;
   height: 30vmin;
@@ -184,7 +216,7 @@ textarea{
   font-size: 1rem;
 }
 
-.buttonsCreate{
+.buttonsCreate, .buttons-delete{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -205,35 +237,89 @@ textarea{
   height: 6vmin;
 }
 
-#userName{
+.userName{
   font-weight: 600;
 }
 
-#close-modal-createPost{
-  background-color: #f2f2f2;
+.cancelButton{
+  background-color: #d9d9d9;
   color: #F5754E;
   width: 30%;
 }
 
-#sendPost{
+.confirmButton{
   background-color: #F5754E;
   color: #f2f2f2;
   width: 30%;
 }
 
-::-webkit-scrollbar {
-  width: 15px;
+#fade-delete, #modal-delete {
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
 }
-::-webkit-scrollbar-track {
-  background: rgba(250, 250, 250, 0.2);
-  border-radius: 5px;
+
+#fade-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 5;
 }
-::-webkit-scrollbar-thumb {
+
+#modal-delete {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: #f2f2f2;
-  border-radius: 10px;
+  z-index: 10;
+  width: 90%;
+  border-radius: 0.5rem;
+}
+
+#modal-delete.hide,
+#fade-delete.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modal-delete.hide {
+  top: 0;
+}
+
+.modalContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3vmin;
+  gap: 3vmin;
+}
+
+.modal-body-delete{
+  color: #1a1a1a;
+}
+
+h3 {
+  color: #d11124;
+}
+
+.buttons-delete{
+  padding-top: 3vmin;
 }
 
 @media (min-width: 1024px) {
+  .menuContent {
+    width: 15%;
+  }
+  
+  #signOut{
+    width: 30%;
+  }
+
   .posts{
     /* width: 65%; */
     max-width: 65%;
@@ -242,10 +328,6 @@ textarea{
   .postButtons img{
     width: 3.5vmin;
     cursor: pointer;
-  }
-
-  footer{
-    display: none;
   }
 
   #open-modal-createPost{
@@ -260,10 +342,19 @@ textarea{
   .posts:nth-child(1){
     border-top: unset;
   }
-  #modal-createPost {
+  .modal-createPost {
     width: 65%;
   }
   textarea{
     font-size: 1.2rem;
+  }
+
+  #modal-delete {
+    width: 35%;
+  }
+
+  .cancelButton, .confirmButton{
+    font-size: 2.5vmin;
+    width: 40%;
   }
 }

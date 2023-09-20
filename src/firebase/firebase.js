@@ -19,12 +19,13 @@ import {
   serverTimestamp,
   orderBy,
   updateDoc,
+  deleteDoc,
   arrayUnion,
   doc,
   arrayRemove,
+  getDoc,
 } from "firebase/firestore";
 import { app, db } from "../firebase/configFirebase.js";
-import { async } from "regenerator-runtime";
 
 const auth = () => getAuth(app);
 
@@ -116,22 +117,24 @@ export const addPost = async (content, nickname, photoURL, userUID) => {
   });
 };
 
-export const getPosts = (createAllPosts) => {
+export const getPosts = (createPost) => {
+  console.log("executando getPosts");
   const ref = collection(db, "Posts");
   const consultPost = query(ref, orderBy("data", "desc"));
   onSnapshot(consultPost, (querySnapshot) => {
     querySnapshot.docs.forEach((post) => {
       const data = post.data();
       data.docRef = post.id;
-      createAllPosts(data);
+      createPost(data);
     });
   });
 };
 
-export const votePost = (docID, userUID) => {
+export const votePost = async (docID, userUID) => {
   const q = doc(db, "Posts", docID);
-  onSnapshot(q, async (querySnapshot) => {
-    const data = querySnapshot.data();
+  const docSnap = await getDoc(q);
+  if (docSnap.exists()) {
+    const data = docSnap.data();
     const votes = data.votes;
     if (votes.includes(userUID)) {
       await updateDoc(doc(db, "Posts", docID), {
@@ -142,7 +145,7 @@ export const votePost = (docID, userUID) => {
         votes: arrayUnion(userUID),
       });
     }
-  });
+  };
 };
 
 export const calculateTimeAgo = (date) => {
@@ -162,4 +165,16 @@ export const calculateTimeAgo = (date) => {
     return `${minutes} min${minutes === 1 ? "" : ""}`;
   }
   return `${seconds}s${seconds === 1 ? "" : ""}`;
+};
+
+export const editPost = async (docRef, newContent) => {
+  await updateDoc(doc(db, "Posts", docRef), {
+    content: newContent,
+  });
+  console.log("Editando post");
+}
+
+export const deletePost = async (docRef) =>{
+  await deleteDoc(doc(db, "Posts", docRef));
+  console.log("deletou");
 };
