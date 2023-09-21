@@ -10,6 +10,9 @@ import {
 import logo from '../../assets/up_on_logo.png';
 import signOutImg from '../../assets/signOut.png';
 import createImg from '../../assets/create.png';
+import upvote from '../../assets/upvote.png';
+import edit from '../../assets/edit.png';
+import remove from '../../assets/remove.png';
 
 export default () => {
   const container = document.createElement('article');
@@ -82,17 +85,17 @@ export default () => {
           <p class='timestamp'>${calculateTimeAgo(post.data.toDate())}</p>
         </section>  
         ${post.userUID === user.uid ? `
-        <button class='postButtons openModalEdit' data-content='${post.content}' data-id='${post.docRef}'><img src='./assets/edit.png'></button>
+        <button class='postButtons openModalEdit' data-content='${post.content}' data-id='${post.docRef}'><img src='${edit}'></button>
         ` : ''}
       </section>
       <p class='content'>${post.content}</p>
       <section class='postFooter'>
         <section class='votes'>
-          <button class='upVoteButton' data-id='${post.docRef}'><img src='./assets/upvote.png'></button>
+          <button class='upVoteButton' data-id='${post.docRef}'><img src='${upvote}'></button>
           <p class='countVotes'>${post.votes.length}</p>
         </section>
         ${post.userUID === user.uid ? `
-        <button class='postButtons openModalDelete' data-id='${post.docRef}'><img src='./assets/remove.png'></button>
+        <button class='postButtons openModalDelete' data-id='${post.docRef}'><img src='${remove}'></button>
         ` : ''}
       </section>
     `;
