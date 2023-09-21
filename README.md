@@ -147,11 +147,11 @@ Os protótipos foram desenvolvidos a fim de visualizar a melhor maneira de criar
 
 Desktop
 
-<img src="src\assets\prototipoDesktop.png" alt="home page desktop">
+<img src="src.\assets\prototipoDesktop.png" alt="home page desktop">
 
 Mobile
 
-<img src="src\assets\prototipoMobile.png" alt="home page desktop">
+<img src="src.\assets\prototipoMobile.png" alt="home page desktop">
 
 ## 5. **Testes de usabilidade**
 
