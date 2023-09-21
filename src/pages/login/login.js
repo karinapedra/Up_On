@@ -3,6 +3,9 @@ import {
   loginGoogle,
   recoverPassword,
 } from '../../firebase/firebase.js';
+import google from '../../assets/google.png';
+import logo from '../../assets/up_on_logo.png';
+
 
 export default () => {
   const container = document.createElement('article');
@@ -12,14 +15,14 @@ export default () => {
       <nav>
         <ul class='headerMenu'>
             <a href='#login' id='logo'>
-              <img src='assets/up_on_logo.png' alt='up_on_logo' />
+              <img src='${logo}' alt='up_on_logo' />
             </a>
           </li>
         </ul>
       </nav>
     </header>
     <section class='about'> 
-      <figure><img src='./assets/up_on_logo.png' alt='Up_On' id='logo'></figure>
+      <figure><img src='${logo}' alt='Up_On' id='logo'></figure>
       <p id='aboutUpOn'>
         A place where you can connect with what truly matters. Stay updated on your favorite interests, from technology to entertainment, all in real-time. Share news, discover relevant content, and become a part of a community passionate about knowledge. 
         Join us to explore a world of information and meaningful connections.
@@ -39,7 +42,7 @@ export default () => {
       </form>
       <hr>
       <button id='google' class='buttonGoogle'>
-        <img class='imgGoogle' src='./assets/google.png' alt='Google'>
+        <img class='imgGoogle' src='${google}' alt='Google'>
         <p>Continue With Google</p>
       </button>
       <p class='smallThings'>New in Up_On? <a href='#register'>SignUp</a></p>
@@ -49,7 +52,7 @@ export default () => {
     <div id='fade-about' class='hide'></div>
     <div id='modal-about' class='hide'>
       <div class='modal-header-about'>
-        <img src='/assets/up_on_logo.png' class='logo-img' alt='up_on_logo' />
+        <img src='${logo}' class='logo-img' alt='up_on_logo' />
       </div>
       <div class='modal-body-about'>
         <p class='modalText'>
@@ -65,7 +68,7 @@ export default () => {
   const emailLogin = container.querySelector('#email');
   const passwordLogin = container.querySelector('#password');
   const signInButton = container.querySelector('#signIn');
-  const google = container.querySelector('#google');
+  const googleButton = container.querySelector('#google');
   const errorMessage = container.querySelector('#errorMessage');
   const recoverPasswordButton = container.querySelector('#recoverPasswordButton');
 
@@ -85,7 +88,7 @@ export default () => {
         errorMessage.style.display = 'block';
       });
   });
-  google.addEventListener('click', () => loginGoogle());
+  googleButton.addEventListener('click', () => loginGoogle());
   emailLogin.addEventListener('input', () => {
     errorMessage.style.display = 'none';
   });

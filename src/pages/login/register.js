@@ -2,6 +2,8 @@ import {
   createUserEmailAndPassword,
   loginGoogle,
 } from '../../firebase/firebase.js';
+import logo from '../../assets/up_on_logo.png';
+import google from '../../assets/google.png';
 
 export default () => {
   const container = document.createElement('article');
@@ -12,7 +14,7 @@ export default () => {
           <nav>
             <ul class='headerMenu'>
                 <a href='#login' id='logo'>
-                  <img src='assets/up_on_logo.png' alt='up_on_logo' />
+                  <img src='${logo}' alt='up_on_logo' />
                 </a>
               </li>
             </ul>
@@ -43,7 +45,7 @@ export default () => {
           <button id='signUp' class='formButtons'>Sign Up</button>
         </form>
         <button id='google' class='buttonGoogle'>
-        <img class='imgGoogle' src='./assets/google.png' alt='Google'>
+        <img class='imgGoogle' src='${google}' alt='Google'>
         <p>Continue With Google</p>
         </button>
       </article>
@@ -54,7 +56,7 @@ export default () => {
   const passwordCreate = container.querySelector('#password');
   const confirmPasswordCreate = container.querySelector('#confirmPassword');
   const signUpButton = container.querySelector('#signUp');
-  const google = container.querySelector('#google');
+  const googleButton = container.querySelector('#google');
   const errorMessage = container.querySelector('#errorMessage');
   const nickname = container.querySelector('#nickname');
   const icons = container.querySelectorAll('input[type="radio"][name="imagem"]');
@@ -94,7 +96,7 @@ export default () => {
     }
   });
 
-  google.addEventListener('click', () => {
+  googleButton.addEventListener('click', () => {
     loginGoogle()
       .then(() => {
         window.location.href = '#timeline';

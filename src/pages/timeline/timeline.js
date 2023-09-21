@@ -7,6 +7,9 @@ import {
   editPost,
   deletePost,
 } from '../../firebase/firebase.js';
+import logo from '../../assets/up_on_logo.png';
+import signOutImg from '../../assets/signOut.png';
+import createImg from '../../assets/create.png';
 
 export default () => {
   const container = document.createElement('article');
@@ -19,19 +22,19 @@ export default () => {
           <li><img src='' id='userImageHeader' alt='profileImage'></li>
           <li>
             <a href='#timeline' id='logo'>
-              <img src='assets/up_on_logo.png' alt='up_on_logo' />
+              <img src='${logo}' alt='up_on_logo' />
             </a>
           </li>
           <li>
             <button class='signOut'>
-              <img class='signOutIcon' src='./assets/signOut.png' alt='Sign Out'>
+              <img class='signOutIcon' src='${signOutImg}' alt='Sign Out'>
             </button>
           </li>
         </ul>
     </nav>
     </header>
     <section class='allPosts'></section>
-    <button class='createButton' id='open-modal-createPost'><img src='./assets/create.png'></button>
+    <button class='createButton' id='open-modal-createPost'><img src='${createImg}'></button>
     `;
 
   container.innerHTML = template;
