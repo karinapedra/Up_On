@@ -1,25 +1,22 @@
-import login from "./pages/login/login.js";
-import register from "./pages/login/register.js";
-import timeline from "./pages/timeline/timeline.js";
-import {checkIfUserIsLogged} from "./firebase/firebase.js";
+import login from './pages/login/login.js';
+import register from './pages/login/register.js';
+import timeline from './pages/timeline/timeline.js';
+import { checkIfUserIsLogged } from './firebase/firebase.js';
 
-const main = document.querySelector("#root");
+const main = document.querySelector('#root');
 
 const init = () => {
-  window.addEventListener("hashchange", () => {
-    main.innerHTML = "";
+  window.addEventListener('hashchange', () => {
+    main.innerHTML = '';
     switch (window.location.hash) {
-      case " ":
+      case ' ':
         main.appendChild(login());
         break;
-      case "#register":
+      case '#register':
         main.appendChild(register());
         break;
-      case "#timeline":
+      case '#timeline':
         main.appendChild(timeline());
-        break;
-      case "#search":
-        main.appendChild(search());
         break;
       default:
         main.appendChild(login());
@@ -27,8 +24,7 @@ const init = () => {
   });
 };
 
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   checkIfUserIsLogged();
   init();
 });
-

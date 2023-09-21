@@ -29,6 +29,21 @@ li {
   width: 12vmin;
   border-radius: 100px;
 }
+
+.postButtons img{
+  width: 6vmin;
+}
+
+.createButton img{
+  cursor: pointer;
+  width: 10vmin;
+}
+
+.upVoteButton img{
+  width: 6vmin;
+  cursor: pointer;
+}
+
 #logo img {
   display: flex;
   justify-content: center;
@@ -108,10 +123,6 @@ hr{
   gap: 2vmin;
 }
 
-.userImage {
-  width: 3rem;
-  border-radius: 100px;
-}
 .createButton{
   position: fixed;
   right: 25px;
@@ -123,21 +134,9 @@ hr{
   align-items: center;
   justify-content: center;
 }
-.createButton img{
-  cursor: pointer;
-  width: 10vmin;
-}
 
-.upVoteButton img{
-  width: 6vmin;
-  cursor: pointer;
-}
 button.upVoteButton{
   all:initial;
-}
-
-.postButtons img{
-  width: 6vmin;
 }
 
 button.postButtons{
@@ -321,7 +320,7 @@ h3 {
   }
 
   .posts{
-    /* width: 65%; */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 65%;
   }
 
@@ -335,10 +334,7 @@ h3 {
     justify-content: center;
     align-items: center;
   }
-
-  .posts{
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
+  
   .posts:nth-child(1){
     border-top: unset;
   }
