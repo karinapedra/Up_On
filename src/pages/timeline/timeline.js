@@ -116,7 +116,7 @@ export default () => {
         <p class='userName'></p>
       </div>
       <div class='modal-body'>
-        <textarea class='createPost' placeholder='What's happening?' maxlength='150'></textarea>
+        <textarea class='createPost' placeholder='What\'s happening?' maxlength='150'></textarea>
         <section class='buttonsCreate'> 
           <button class='postButtonsCreate cancelButton close-modal-createPost' >CANCEL</button>
           ${isNewPost ? '<button class="postButtonsCreate confirmButton sendPost">POST</button>' : '<button class="postButtonsCreate confirmButton sendEditPost">EDIT</button>'}
